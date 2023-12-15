@@ -66,7 +66,7 @@ fclose($fp);
 			<meta name="author" content="Bradley Comerford" />
 			<title><?php echo $config['title']; ?></title>
 			<!-- Favicon-->
-			<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+			<link rel="icon" type="image/x-icon" href="https://networkupstools.org/images/nut-logo.png" />
 			<!-- Core theme CSS (includes Bootstrap)-->
 			<link href="css/styles.css" rel="stylesheet" />
 			
