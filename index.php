@@ -3,7 +3,7 @@
  * Show UPS Status in two tables, system and battery.
  *
  * @name      index.php
- * @version   0.99.1
+ * @version   1.00.4
  * @license   GPL v3 (see enclosed license.txt or <http://www.gnu.org/licenses/>)
  * @copyright DO NOT remove @author or @license or @copyright.
  *            This program is free software: you can redistribute it and/or modify
@@ -208,15 +208,17 @@ fclose($fp);
 					</tr>
 					<?php } ?>
 				</table>
-<?php
-#if(isset($config['debug']) && $config['debug'] == 'true') {
-#	echo '<div class="debug">';
-#        echo '<pre>';
-#        var_dump($ups);
-#        echo '</pre>';
-#	echo '</div>';
-#}
-?>
+				<?php
+				# DEBUGGING - SHOWS ALL POTENTIAL UPS DRIVER VALUES
+				#
+				#if(isset($config['debug']) && $config['debug'] == 'true') {
+				#	echo '<div class="debug">';
+				#        echo '<pre>';
+				#        var_dump($ups);
+				#        echo '</pre>';
+				#	echo '</div>';
+				#}
+				?>
 			</div>
 		<br />
 		</div>
@@ -234,9 +236,10 @@ fclose($fp);
 			</footer>
 		</div>
 	</body>
-	<!-- Bootstrap core JS-->
 
+	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
 </html>
