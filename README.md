@@ -1,4 +1,6 @@
 # [NUT](http://dezrin.ddns.net:8888/)
+[![Build Status](http://dezrin.ddns.net:8080/api/public/dl/gxyJXCDG/share/release-passing.svg)](http://http://dezrin.ddns.net:8888/)
+
 PHP Interface for Network UPS Tools
 
 This script assumes that you have [Network UPS Tools](https://networkupstools.org/) installed and configured with a UPS, which is contactable via a compatible driver. 
