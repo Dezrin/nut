@@ -32,29 +32,8 @@ if(file_exists("index.php")) {
 /* Define array */
 $ups = array();
 
-/* Fetch data from socket */
+/* Open socket connection to UPS for data */
 $fp = fsockopen($config['server'], $config['port'], $errno, $errstr, 30);
-if (!$fp) {
-	echo "$errstr ($errno)<br />\n";
-} else {
-	fwrite($fp, "LIST VAR {$config['ups_name']}\nLOGOUT\n");
-	while (!feof($fp)) {
-		$line = trim(fgets($fp, 128));
-		if(substr($line, 0, 2) == 'OK' ) {
-			break;
-		}
-
-		/* Cut VAR ups */
-		$line = str_replace("VAR {$config['ups_name']} ", '', $line);
-
-		/* Write ups data to array... */
-		$upsdata 	= explode(" ", $line, 2);
-		$upsvar 	= trim(str_replace('"','',$upsdata[0]));
-		$upsvalue 	= trim(str_replace('"','',$upsdata[1]));
-		$ups[$upsvar] 	= $upsvalue;
-	}
-}
-fclose($fp);
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +61,32 @@ fclose($fp);
 		</nav>
 		<div class="hero-unit">
 			<div class="container">
+			<?php
+			/* Get data from socket connection */
+			if (!$fp) {
+				echo '<div class="alert alert-danger" role="alert">';
+				echo "$errstr ($errno)<br />\n";
+				echo '</div>';
+			} else {
+				fwrite($fp, "LIST VAR {$config['ups_name']}\nLOGOUT\n");
+				while (!feof($fp)) {
+					$line = trim(fgets($fp, 128));
+					if(substr($line, 0, 2) == 'OK' ) {
+						break;
+					}
+
+					/* Cut VAR ups */
+					$line = str_replace("VAR {$config['ups_name']} ", '', $line);
+
+					/* Write ups data to array... */
+					$upsdata 	= explode(" ", $line, 2);
+					$upsvar 	= trim(str_replace('"','',$upsdata[0]));
+					$upsvalue 	= trim(str_replace('"','',$upsdata[1]));
+					$ups[$upsvar] 	= $upsvalue;
+				}
+			}
+			fclose($fp);
+			?>
 				<br>
 				<h4><i class="fa-solid fa-computer"></i> System</h4>
 				<table class="table table-striped">
@@ -209,15 +214,15 @@ fclose($fp);
 					<?php } ?>
 				</table>
 				<?php
-				# DEBUGGING - SHOWS ALL POTENTIAL UPS DRIVER VALUES
-				#
-				#if(isset($config['debug']) && $config['debug'] == 'true') {
-				#	echo '<div class="debug">';
-				#        echo '<pre>';
-				#        var_dump($ups);
-				#        echo '</pre>';
-				#	echo '</div>';
-				#}
+				/* DEBUGGING - SHOWS ALL POTENTIAL UPS DRIVER VALUES */
+				/*
+				if(isset($config['debug']) && $config['debug'] == 'true') {
+					echo '<div class="debug">';
+				        echo '<pre>';
+				        var_dump($ups);
+				        echo '</pre>';
+					echo '</div>';
+				}*/
 				?>
 			</div>
 		<br />
