@@ -6,7 +6,7 @@ $config = array(
     'title' => 'NUT Web',    /* Script title */
     'watt' => '550',                /* UPS capacity in Watt */
     'copyright' => 'Dezrin',     /* Copyright */
-    'version' => '1.00.4',          /* Version */
+    'version' => '1.00.5',          /* Version */
     'debug' => 'true',
     );
 
