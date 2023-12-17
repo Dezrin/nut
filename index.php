@@ -100,9 +100,9 @@ error_reporting(E_ERROR | E_PARSE);
 				fclose($fp);
 			}
 			?>
+			<?php if(isset($ups['device.serial'])) { ?>
 				<h4><i class="fa-solid fa-computer"></i> System</h4>
 				<table class="table table-striped">
-					<?php if(isset($ups['device.serial'])) { ?>
 					<tr>
 						<td>Serial Number</td>
 						<td><?= $ups['device.serial'] ?></td>
@@ -144,9 +144,9 @@ error_reporting(E_ERROR | E_PARSE);
 					</tr>
 					<?php } ?>
 				</table>
+				<?php if(isset($ups['ups.status'])) { ?>
 				<h4><i class="fa-solid fa-battery-full"></i> Battery</h4>
 				<table class="table table-striped">
-					<?php if(isset($ups['ups.status'])) { ?>
 					<tr>
 						<td><span class="fa-solid fa-power-off" aria-hidden="true"></span> Status</td>
 						<td>
