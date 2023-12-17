@@ -32,8 +32,8 @@ if(file_exists("index.php")) {
 /* Define array */
 $ups = array();
 
-/* Open socket connection to UPS for data */
-$fp = fsockopen($config['server'], $config['port'], $errno, $errstr, 30);
+/* Disable Error Reporting */
+error_reporting(E_ERROR | E_PARSE);
 ?>
 
 <!DOCTYPE html>
@@ -61,12 +61,20 @@ $fp = fsockopen($config['server'], $config['port'], $errno, $errstr, 30);
 		</nav>
 		<div class="hero-unit">
 			<div class="container">
+			<br>
 			<?php
+			/* Open socket connection to UPS for data */
+			if (!$fp = fsockopen($config['server'], $config['port'], $errno, $errstr, 30)) {
+				echo '<div class="alert alert-danger" role="alert">';
+				echo '<b>WARNING!</b> Unable to connect to your UPS';
+				echo '</div>';
+			} else {
+				$fp = fsockopen($config['server'], $config['port'], $errno, $errstr, 30);
+			}
+
 			/* Get data from socket connection */
 			if (!$fp) {
-				echo '<div class="alert alert-danger" role="alert">';
-				echo "$errstr ($errno)<br />\n";
-				echo '</div>';
+
 			} else {
 				fwrite($fp, "LIST VAR {$config['ups_name']}\nLOGOUT\n");
 				while (!feof($fp)) {
@@ -85,9 +93,13 @@ $fp = fsockopen($config['server'], $config['port'], $errno, $errstr, 30);
 					$ups[$upsvar] 	= $upsvalue;
 				}
 			}
-			fclose($fp);
+
+			if (!fclose($fp)) {
+
+			} else {
+				fclose($fp);
+			}
 			?>
-				<br>
 				<h4><i class="fa-solid fa-computer"></i> System</h4>
 				<table class="table table-striped">
 					<?php if(isset($ups['device.serial'])) { ?>
