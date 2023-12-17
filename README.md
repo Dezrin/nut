@@ -120,4 +120,6 @@ Ensure these are the same settings that you configured NUT as above
     'ups_name' => 'eaton3s',            /* UPS name configured in ups.conf */
 ```
 
-Refresh the page and it will load your UPS information.
+Head to your VM's IP address in your web browser: http://127.0.0.1/ as an example. 
+
+This will now load your UPS information and display it on the web. 
