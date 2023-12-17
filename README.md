@@ -1,4 +1,4 @@
-# [NUT](http://dezrin.ddns.net:8888/)
+# [NUT](http://dezrin.ddns.net:8888/)![image info](http://dezrin.ddns.net:8080/api/public/dl/Z-WXwfVe/share/Screenshot%202023-12-14%20234942.png)
 [![Build Status](http://dezrin.ddns.net:8080/api/public/dl/gxyJXCDG/share/release-passing.svg)](http://http://dezrin.ddns.net:8888/)
 
 PHP Interface for Network UPS Tools
@@ -121,7 +121,3 @@ Ensure these are the same settings that you configured NUT as above
 ```
 
 Refresh the page and it will load your UPS information.
-
-Example:
-
-![image info](http://dezrin.ddns.net:8080/api/public/dl/Z-WXwfVe/share/Screenshot%202023-12-14%20234942.png)
