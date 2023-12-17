@@ -3,7 +3,7 @@
  * Show UPS Status in two tables, system and battery.
  *
  * @name      index.php
- * @version   1.00.4
+ * @version   1.00.6
  * @license   GPL v3 (see enclosed license.txt or <http://www.gnu.org/licenses/>)
  * @copyright DO NOT remove @author or @license or @copyright.
  *            This program is free software: you can redistribute it and/or modify
