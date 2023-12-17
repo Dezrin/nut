@@ -4,7 +4,7 @@
 PHP Interface for Network UPS Tools
 
 ## Prerequisites
-1. Ubuntu Server 20.04 running on a VM with at least 1vCPU and 2GB RAM, 50GB storage.
+1. Ubuntu Server 20.04 running on a VPS/VM with at least 1vCPU and 2GB RAM, 50GB storage.
 2. [LAMP](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04) stack installed and configured with PHP7.4 minimum
 3. git Installed (apt install git)
 4. Install Network UPS Tools `NUT` as described below:
