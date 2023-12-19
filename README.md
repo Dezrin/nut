@@ -1,5 +1,5 @@
 # [NUT](http://dezrin.ddns.net:8888/)![image info](http://dezrin.ddns.net:8080/api/public/dl/Z-WXwfVe/share/Screenshot%202023-12-14%20234942.png)
-[![Build Status](http://dezrin.ddns.net:8080/api/public/dl/gxyJXCDG/share/release-passing.svg)](https://github.com/Dezrin/nut/releases/tag/v1.00.4)
+[![Build Status](http://dezrin.ddns.net:8080/api/public/dl/gxyJXCDG/share/release-passing.svg)](https://github.com/Dezrin/nut/releases/tag/v1.00.5)
 
 PHP Interface for Network UPS Tools
 
