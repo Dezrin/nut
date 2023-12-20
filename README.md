@@ -99,7 +99,7 @@ MONITOR eaton3s@localhost 1 local_mon <PASSWORD_REPLACE> master
 
 ```sh
 git clone https://github.com/Dezrin/nut.git
-cp nut/* /var/www/html/
+cp nut-*/* /var/www/html/
 ```
 
 ```sh
