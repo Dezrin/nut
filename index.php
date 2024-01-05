@@ -129,12 +129,12 @@ error_reporting(E_ERROR | E_PARSE);
 					</tr>
 					<?php } if(isset($ups['battery.mfr.date'])) { ?>
 					<tr>
-						<td>Produktionsdatum Batterie</td>
+						<td>Battery Manufactured Date</td>
 						<td><?= date('d.m.Y', strtotime($ups['battery.mfr.date'])) ?></td>
 					</tr>
 					<?php } if(isset($ups['ups.mfr.date'])) { ?>
 					<tr>
-						<td>Produktionsdatum USV</td>
+						<td>UPS Manufactured Date</td>
 						<td><?= date('d.m.Y', strtotime($ups['ups.mfr.date'])) ?></td>
 					</tr>
 					<?php } if(isset($ups['ups.realpower.nominal'])) { ?>
@@ -162,7 +162,7 @@ error_reporting(E_ERROR | E_PARSE);
 								echo '<span class="badge badge-pill bg-warning">Online (Charging)</span>';
 								break;;
 							case 'OL CHRG LB':
-								echo '<span class="badge badge-pill bg-warning">Laden (Batterie fast leer)</span>';
+								echo '<span class="badge badge-pill bg-warning">Online (Low Battery)</span>';
 								break;;
 							default:
 								echo '<spann class="badge badge-pill bg-info">Unknown</span>';
