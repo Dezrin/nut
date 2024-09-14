@@ -1,5 +1,5 @@
-# [NUT](https://ups.dezr.in)![image info](http://dezrin.ddns.net:8080/api/public/dl/Z-WXwfVe/share/Screenshot%202023-12-14%20234942.png)
-[![Build Status](http://dezrin.ddns.net:8080/api/public/dl/gxyJXCDG/share/release-passing.svg)](https://github.com/Dezrin/nut/releases/tag/v1.00.5)
+# [NUT](https://ups.dezr.in)![image info](https://fb.dezr.in/filebrowser/api/public/dl/c9xvPWmz/share/Screenshot%202024-09-14%20233942.png)
+[![Build Status](https://fb.dezr.in/api/public/dl/gxyJXCDG/share/release-passing.svg)](https://github.com/Dezrin/nut/releases/tag/v1.00.5)
 
 PHP Interface for Network UPS Tools
 
