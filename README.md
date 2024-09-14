@@ -146,7 +146,7 @@ services:
       - "traefik.http.routers.ups-secure.tls=true" # This tells traefic your want it to get a cert and use ssl
       - "traefik.http.routers.ups-secure.tls.certresolver=cloudflare" # This Label is required only on the Redis hosts
       - "traefik.http.routers.ups-secure.service=ups-secure" # What show up on the Traefic Dashboard
-      - "traefik.http.services.ups-secure.loadbalancer.server.port=80" # This is the port the container uses
+      - "traefik.http.services.ups-secure.loadbalancer.server.port=8888" # This is the port the container uses
 #      - "traefik.http.services.ups-secure.loadbalancer.server.scheme=https" # To send HTTPS request to the origin server, instead of HTTP
       - 'traefik.http.routers.ups-secure.middlewares=realCloudflareIP@file' # These a middleware files which you can have multiple comma-separated
 #      - 'traefik.http.routers.nginx2.middlewares=lockdown-headers@file, authentik@file' # example with Authentic middleware label
