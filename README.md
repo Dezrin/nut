@@ -122,9 +122,9 @@ Ensure these are the same settings that you configured NUT as above
 
 Head to your VM's IP address in your web browser: http://127.0.0.1/ as an example. 
 
-#Run NutWEB via Docker
+# Run NutWEB via Docker
 
-##Docker Compose with Traefik
+## Docker Compose with Traefik
 
 ```sh
 version: '3'
