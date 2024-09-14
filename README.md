@@ -126,6 +126,9 @@ Head to your VM's IP address in your web browser: http://127.0.0.1/ as an exampl
 
 ## Docker Compose with Traefik
 
+Create an external volume on your docker host called `php-apache`
+Download this GIT repository as a .zip file and upload the contents to your docker host in the volume you just created
+
 ```sh
 version: '3'
 
