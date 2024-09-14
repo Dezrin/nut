@@ -130,8 +130,6 @@ Create an external volume on your docker host called `php-apache`
 Download this GIT repository as a .zip file and upload the contents to your docker host in the volume you just created
 
 ```sh
-version: '3'
-
 services:
   registry:
     image: php:7.4-apache
@@ -142,13 +140,13 @@ services:
 #      - "kop.bind.ip=192.168.254.155" # kop.bind.ip label needed if your using a macVLAN address
       - "traefik.enable=true"
       - "traefik.http.routers.ups-secure.entrypoints=https" # This is the entry point. You can add custom ports in traefik.yaml etc
-      - "traefik.http.routers.ups-secure.rule=Host(`ups.domain.com`)" # Host name
+      - "traefik.http.routers.ups-secure.rule=Host(`ups.dezr.in`)" # Host name
       - "traefik.http.routers.ups-secure.tls=true" # This tells traefic your want it to get a cert and use ssl
       - "traefik.http.routers.ups-secure.tls.certresolver=cloudflare" # This Label is required only on the Redis hosts
       - "traefik.http.routers.ups-secure.service=ups-secure" # What show up on the Traefic Dashboard
       - "traefik.http.services.ups-secure.loadbalancer.server.port=8888" # This is the port the container uses
 #      - "traefik.http.services.ups-secure.loadbalancer.server.scheme=https" # To send HTTPS request to the origin server, instead of HTTP
-      - 'traefik.http.routers.ups-secure.middlewares=realCloudflareIP@file' # These a middleware files which you can have multiple comma-separated
+      - 'traefik.http.routers.ups-secure.middlewares=realCloudflareIP@file, authentik@file' # These a middleware files which you can have multiple comma-separated
 #      - 'traefik.http.routers.nginx2.middlewares=lockdown-headers@file, authentik@file' # example with Authentic middleware label
     ports:
     - "8888:80"
@@ -161,6 +159,7 @@ services:
       - PHP_CFLAGS=-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
       - PHP_CPPFLAGS=-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
       - PHP_LDFLAGS=-Wl,-O1 -pie
+      - GPG_KEYS=42670A7FE4D0441C8E4632349E4FDC074A4EF02D 5A52880781F755608BF815FC910DEB46F53EA312
       - PHP_VERSION=7.4.33
       - PHP_URL=https://www.php.net/distributions/php-7.4.33.tar.xz
       - PHP_ASC_URL=https://www.php.net/distributions/php-7.4.33.tar.xz.asc
@@ -171,6 +170,7 @@ services:
 volumes:
   php-apache:
     external: true
+
 ```
 
 To run NUT-Web without Traefik, just remove all the `Labels` in the above compose file
