@@ -122,4 +122,54 @@ Ensure these are the same settings that you configured NUT as above
 
 Head to your VM's IP address in your web browser: http://127.0.0.1/ as an example. 
 
+#Run NutWEB via Docker
+
+##Docker Compose with Traefik
+
+```sh
+version: '3'
+
+services:
+  registry:
+    image: php:7.4-apache
+    container_name: Web-NUT
+    working_dir: /var/www/html
+
+    labels:
+#      - "kop.bind.ip=192.168.254.155" # kop.bind.ip label needed if your using a macVLAN address
+      - "traefik.enable=true"
+      - "traefik.http.routers.ups-secure.entrypoints=https" # This is the entry point. You can add custom ports in traefik.yaml etc
+      - "traefik.http.routers.ups-secure.rule=Host(`ups.domain.com`)" # Host name
+      - "traefik.http.routers.ups-secure.tls=true" # This tells traefic your want it to get a cert and use ssl
+      - "traefik.http.routers.ups-secure.tls.certresolver=cloudflare" # This Label is required only on the Redis hosts
+      - "traefik.http.routers.ups-secure.service=ups-secure" # What show up on the Traefic Dashboard
+      - "traefik.http.services.ups-secure.loadbalancer.server.port=80" # This is the port the container uses
+      - "traefik.http.services.ups-secure.loadbalancer.server.scheme=https" # To send HTTPS request to the origin server, instead of HTTP
+      - 'traefik.http.routers.ups-secure.middlewares=realCloudflareIP@file' # These a middleware files which you can have multiple comma-separated
+#      - 'traefik.http.routers.nginx2.middlewares=lockdown-headers@file, authentik@file' # example with Authentic middleware label
+    ports:
+    - "8888:80"
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - PHPIZE_DEPS=autoconf 		dpkg-dev 		file 		g++ 		gcc 		libc-dev 		make 		pkg-config 		re2c
+      - PHP_INI_DIR=/usr/local/etc/php
+      - APACHE_CONFDIR=/etc/apache2
+      - APACHE_ENVVARS=/etc/apache2/envvars
+      - PHP_CFLAGS=-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+      - PHP_CPPFLAGS=-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+      - PHP_LDFLAGS=-Wl,-O1 -pie
+      - PHP_VERSION=7.4.33
+      - PHP_URL=https://www.php.net/distributions/php-7.4.33.tar.xz
+      - PHP_ASC_URL=https://www.php.net/distributions/php-7.4.33.tar.xz.asc
+      - PHP_SHA256=924846abf93bc613815c55dd3f5809377813ac62a9ec4eb3778675b82a27b927
+    volumes:
+      - php-apache:/var/www/html
+
+volumes:
+  php-apache:
+    external: true
+```
+
+To run NUT-Web without Traefik, just remove all the `Labels` in the above compose file
+
 This will now load your UPS information and display it on the web. 
