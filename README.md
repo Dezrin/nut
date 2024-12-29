@@ -132,7 +132,7 @@ Download this GIT repository as a .zip file and upload the contents to your dock
 ```sh
 services:
   registry:
-    image: php:7.4-apache
+    image: registry.dezr.in/php:7.4-apache
     container_name: Web-NUT
     working_dir: /var/www/html
 
